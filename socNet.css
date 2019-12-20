@@ -1,0 +1,15 @@
+#wraper{
+    display: block;
+    width: 100em;
+    min-height: 90em;
+    border: solid red 3px;
+}
+#page{
+    width: 100%;
+}
+.userDiv{
+    background-color: aquamarine;
+    height: 100px;
+    width: 100%;
+    border-bottom: solid green 2px;
+}
