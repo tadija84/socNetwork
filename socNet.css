@@ -1,7 +1,7 @@
 #wraper{
     display: block;
-    width: 100em;
-    min-height: 90em;
+    width: 100%;
+    min-height: 90%;
     border: solid red 3px;
 }
 #page{
@@ -12,4 +12,25 @@
     height: 100px;
     width: 100%;
     border-bottom: solid green 2px;
+}
+.userBigDiv{
+    background-color: rgb(212, 248, 7);
+    height: 500px;
+    width: 100%;
+}
+.smallProfilDiv{
+    
+    height: 100px;
+    width: 10%;
+    border: solid green 1px;
+}
+.friendsDiv{
+    background-color: rgb(248, 59, 217);
+    width: 100%;
+    display: flex;
+}
+.frOfFrDiv{
+    background-color: rgb(20, 246, 12);
+    width: 100%;
+    display: flex;
 }
