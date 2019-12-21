@@ -51,9 +51,7 @@ function displayingUsers(user) {
   });
 }
 function displayingOne(user) {
-  console.log(user.firstName);
   var page = document.getElementById("page");
-
   page.innerHTML = null;
   var usWrap = document.createElement("div");
   usWrap.setAttribute("class", "userBigDiv");
@@ -101,6 +99,11 @@ function dispFriends(users, user) {
         usGen = document.createElement("div");
         usGen.innerHTML = "Gender: " + users[i].gender;
         friendProfilDiv.appendChild(usGen);
+        
+        friendProfilDiv.addEventListener("click",
+        function(){console.log(users);})
+        /*friendProfilDiv.addEventListener("click",
+        function(){displayingOne(users[i])})*/
         retDiv.appendChild(friendProfilDiv);
       }
     }
@@ -112,39 +115,69 @@ function disFrOfFr(users, user) {
   var usWrap = document.getElementsByClassName("userBigDiv");
   var retDiv = document.createElement("div");
   retDiv.setAttribute("class", "frOfFrDiv");
+  var sugDiv = document.createElement("div");
+  sugDiv.setAttribute("class", "sugestedFriends");
   var tempArray = [];
+  var tempArray2 = [];
   for (var i = 0; i < users.length; i++) {
     for (var j = 0; j < user.friends.length; j++) {
       if (user.friends[j] == users[i].id) {
-        //users[i]
         for (var ixj = 0; ixj < users.length; ixj++) {
           for (var jxi = 0; jxi < users[i].friends.length; jxi++) {
             var checkArr = tempArray.includes(users[ixj].id);
             var checkArr2 = user.friends.includes(users[ixj].id);
+            var checkArr3 = tempArray2.includes(users[ixj].id);
             if (
               users[i].friends[jxi] == users[ixj].id &&
               users[ixj].id != user.id &&
-              checkArr == false &&
               checkArr2 == false
             ) {
-              var friendProfilDiv = document.createElement("div");
-              friendProfilDiv.setAttribute("class", "smallProfilDiv");
-              var fullName = document.createElement("div");
-              fullName.innerHTML =
-                "User name: " + users[ixj].firstName + " " + users[ixj].surname;
-              friendProfilDiv.appendChild(fullName);
-              usAge = document.createElement("div");
-              if (users[ixj].age != null) {
-                usAge.innerHTML = "Age: " + users[ixj].age;
-              } else {
-                usAge.innerHTML = "Age: " + "unknown";
+              if (checkArr == false) {
+                var friendProfilDiv = document.createElement("div");
+                friendProfilDiv.setAttribute("class", "smallProfilDiv");
+                var fullName = document.createElement("div");
+                fullName.innerHTML =
+                  "User name: " +
+                  users[ixj].firstName +
+                  " " +
+                  users[ixj].surname;
+                friendProfilDiv.appendChild(fullName);
+                usAge = document.createElement("div");
+                if (users[ixj].age != null) {
+                  usAge.innerHTML = "Age: " + users[ixj].age;
+                } else {
+                  usAge.innerHTML = "Age: " + "unknown";
+                }
+                friendProfilDiv.appendChild(usAge);
+                usGen = document.createElement("div");
+                usGen.innerHTML = "Gender: " + users[ixj].gender;
+                friendProfilDiv.appendChild(usGen);
+                retDiv.appendChild(friendProfilDiv);
+                tempArray.push(users[ixj].id);
+              } else if (checkArr3 == false) {
+
+                var friendProfilDiv = document.createElement("div");
+                friendProfilDiv.setAttribute("class", "smallProfilDiv");
+                var fullName = document.createElement("div");
+                fullName.innerHTML =
+                  "User name: " +
+                  users[ixj].firstName +
+                  " " +
+                  users[ixj].surname;
+                friendProfilDiv.appendChild(fullName);
+                usAge = document.createElement("div");
+                if (users[ixj].age != null) {
+                  usAge.innerHTML = "Age: " + users[ixj].age;
+                } else {
+                  usAge.innerHTML = "Age: " + "unknown";
+                }
+                friendProfilDiv.appendChild(usAge);
+                usGen = document.createElement("div");
+                usGen.innerHTML = "Gender: " + users[ixj].gender;
+                friendProfilDiv.appendChild(usGen);
+                sugDiv.appendChild(friendProfilDiv);
+                tempArray2.push(users[ixj].id);
               }
-              friendProfilDiv.appendChild(usAge);
-              usGen = document.createElement("div");
-              usGen.innerHTML = "Gender: " + users[ixj].gender;
-              friendProfilDiv.appendChild(usGen);
-              retDiv.appendChild(friendProfilDiv);
-              tempArray.push(users[ixj].id);
             }
           }
         }
@@ -152,4 +185,5 @@ function disFrOfFr(users, user) {
     }
   }
   usWrap[0].appendChild(retDiv);
+  usWrap[0].appendChild(sugDiv);
 }
