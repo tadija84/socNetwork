@@ -33,14 +33,14 @@ function displayingUsers(user) {
   var fullName = document.createElement("div");
   fullName.innerHTML = "User name: " + user.firstName + " " + user.surname;
   usWrap.appendChild(fullName);
-  usAge = document.createElement("div");
+  var usAge = document.createElement("div");
   if (user.age != null) {
     usAge.innerHTML = "Age: " + user.age;
   } else {
     usAge.innerHTML = "Age: " + "unknown";
   }
   usWrap.appendChild(usAge);
-  usGen = document.createElement("div");
+  var usGen = document.createElement("div");
   usGen.innerHTML = "Gender: " + user.gender;
   usWrap.appendChild(usGen);
   usNumOFr = document.createElement("div");
@@ -59,14 +59,14 @@ function displayingOne(user) {
   var fullName = document.createElement("div");
   fullName.innerHTML = "User name: " + user.firstName + " " + user.surname;
   usWrap.appendChild(fullName);
-  usAge = document.createElement("div");
+  var usAge = document.createElement("div");
   if (user.age != null) {
     usAge.innerHTML = "Age: " + user.age;
   } else {
     usAge.innerHTML = "Age: " + "unknown";
   }
   usWrap.appendChild(usAge);
-  usGen = document.createElement("div");
+  var usGen = document.createElement("div");
   usGen.innerHTML = "Gender: " + user.gender;
   usWrap.appendChild(usGen);
   usNumOFr = document.createElement("div");
@@ -85,25 +85,26 @@ function dispFriends(users, user) {
       if (user.friends[j] == users[i].id) {
         var friendProfilDiv = document.createElement("div");
         friendProfilDiv.setAttribute("class", "smallProfilDiv");
+
+
+        friendProfilDiv.setAttribute("id",users[i].id);
+
         var fullName = document.createElement("div");
         fullName.innerHTML =
           "User name: " + users[i].firstName + " " + users[i].surname;
         friendProfilDiv.appendChild(fullName);
-        usAge = document.createElement("div");
+        var usAge = document.createElement("div");
         if (users[i].age != null) {
           usAge.innerHTML = "Age: " + users[i].age;
         } else {
           usAge.innerHTML = "Age: " + "unknown";
         }
         friendProfilDiv.appendChild(usAge);
-        usGen = document.createElement("div");
+        var usGen = document.createElement("div");
         usGen.innerHTML = "Gender: " + users[i].gender;
         friendProfilDiv.appendChild(usGen);
-        
         friendProfilDiv.addEventListener("click",
-        function(){console.log(users);})
-        /*friendProfilDiv.addEventListener("click",
-        function(){displayingOne(users[i])})*/
+        function(){displayingOne(users[Number(this.id)-1])});
         retDiv.appendChild(friendProfilDiv);
       }
     }
@@ -135,6 +136,7 @@ function disFrOfFr(users, user) {
               if (checkArr == false) {
                 var friendProfilDiv = document.createElement("div");
                 friendProfilDiv.setAttribute("class", "smallProfilDiv");
+                friendProfilDiv.setAttribute("id",users[ixj].id);
                 var fullName = document.createElement("div");
                 fullName.innerHTML =
                   "User name: " +
@@ -142,22 +144,25 @@ function disFrOfFr(users, user) {
                   " " +
                   users[ixj].surname;
                 friendProfilDiv.appendChild(fullName);
-                usAge = document.createElement("div");
+                var usAge = document.createElement("div");
                 if (users[ixj].age != null) {
                   usAge.innerHTML = "Age: " + users[ixj].age;
                 } else {
                   usAge.innerHTML = "Age: " + "unknown";
                 }
                 friendProfilDiv.appendChild(usAge);
-                usGen = document.createElement("div");
+                var usGen = document.createElement("div");
                 usGen.innerHTML = "Gender: " + users[ixj].gender;
                 friendProfilDiv.appendChild(usGen);
+               friendProfilDiv.addEventListener("click",
+        function(){displayingOne(users[Number(this.id)-1])});
                 retDiv.appendChild(friendProfilDiv);
                 tempArray.push(users[ixj].id);
               } else if (checkArr3 == false) {
 
                 var friendProfilDiv = document.createElement("div");
                 friendProfilDiv.setAttribute("class", "smallProfilDiv");
+                friendProfilDiv.setAttribute("id",users[ixj].id);
                 var fullName = document.createElement("div");
                 fullName.innerHTML =
                   "User name: " +
@@ -175,6 +180,8 @@ function disFrOfFr(users, user) {
                 usGen = document.createElement("div");
                 usGen.innerHTML = "Gender: " + users[ixj].gender;
                 friendProfilDiv.appendChild(usGen);
+               friendProfilDiv.addEventListener("click",
+        function(){displayingOne(users[Number(this.id)-1])});
                 sugDiv.appendChild(friendProfilDiv);
                 tempArray2.push(users[ixj].id);
               }
