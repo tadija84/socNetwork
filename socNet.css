@@ -11,17 +11,31 @@
     display: flex;
     flex-wrap: wrap;
 }
+#firstHeader{
+    width: 100vw;
+    text-align: center;
+    font-size: 2.7em;
+    font-weight: 800;
+}
 .userDiv{
     width: 18vw;
     height: 20vw;
     text-align: center;
+    margin: 4vw 1vw 1vw;
     border-bottom: solid rgb(129, 129, 129) 2px;
 }
 .userBigDiv{
     height: 500px;
     width: 100%;
 }
-.frOfFrDiv,.friendsDiv,.sugestedFriends{
+#hamMenu{
+    z-index: 5;
+    width: 6vw;
+    position: fixed;
+    top: 2vw;
+    right: 2vw;
+}
+.friendsOfFriend,.friendsDiv,.sugestedFriends{
     width: 90vw;
     margin: 3vw 2vw 2vw;
     display: blok;

@@ -21,6 +21,10 @@ function passingData(myFunctionName, secondParam) {
 function firstPage(users) {
   var wrap = document.getElementById("wraper");
   var page = document.createElement("div");
+  var firstHeader=document.createElement("div");
+  firstHeader.setAttribute("id","firstHeader");
+  firstHeader.innerHTML="Chose one user";
+  page.appendChild(firstHeader);
   page.setAttribute("id", "page");
   wrap.appendChild(page);
   users.forEach(displayingUsers);
@@ -31,7 +35,9 @@ function displayingUsers(user) {
   usWrap.setAttribute("class", "userDiv");
   page.appendChild(usWrap);
 
-  var userPic = document.createElement("img");
+var userPic=addingPic(user, "smallProfilPic");
+
+  /*var userPic = document.createElement("img");
   if (user.gender == "male") {
     userPic.setAttribute("src", "malePic.jpeg");
     userPic.setAttribute("alt","male picture");
@@ -39,11 +45,13 @@ function displayingUsers(user) {
     userPic.setAttribute("src", "femalePic.jpg");
     userPic.setAttribute("alt","female picture");
   }
-  userPic.setAttribute("class","smallProfilPic");
+  userPic.setAttribute("class","smallProfilPic");*/
   usWrap.appendChild(userPic);
 
+var fullName= addingName(user);
+/*
   var fullName = document.createElement("div");
-  fullName.innerHTML = user.firstName + " " + user.surname;
+  fullName.innerHTML = user.firstName + " " + user.surname;*/
   usWrap.appendChild(fullName);
   /*
   var usAge = document.createElement("div");
@@ -66,10 +74,19 @@ function displayingUsers(user) {
 function displayingOne(user) {
   var page = document.getElementById("page");
   page.innerHTML = null;
-
+var hamMenu=document.createElement("img");
+hamMenu.setAttribute("src","menu.png");
+hamMenu.setAttribute("id","hamMenu");
+hamMenu.addEventListener("click",function() {
+  location.reload();
+});
+page.appendChild(hamMenu);
   var userProfil = document.createElement("div");
-  userProfil.setAttribute("id","userProfil")
-  var userPic = document.createElement("img");
+  userProfil.setAttribute("id","userProfil");
+
+  var userPic=addingPic(user,"profilPic" );
+
+  /*var userPic = document.createElement("img");
   if (user.gender == "male") {
     userPic.setAttribute("src", "malePic.jpeg");
     userPic.setAttribute("alt","male picture");
@@ -77,7 +94,7 @@ function displayingOne(user) {
     userPic.setAttribute("src", "femalePic.jpg");
     userPic.setAttribute("alt","female picture");
   }
-  userPic.setAttribute("class","profilPic");
+  userPic.setAttribute("class","profilPic");*/
 
   var usWrap = document.createElement("div");
   usWrap.setAttribute("class", "userBigDiv");
@@ -85,8 +102,11 @@ function displayingOne(user) {
   var userData=document.createElement("div");
   userData.setAttribute("id","userData");
   usWrap.appendChild(userData);
+
+  var fullName=addingName(user);
+  /*
   var fullName = document.createElement("div");
-  fullName.innerHTML =  user.firstName + " " + user.surname;
+  fullName.innerHTML =  user.firstName + " " + user.surname;*/
   fullName.setAttribute("id","fullName");
   userData.appendChild(fullName);
   var usAge = document.createElement("div");
@@ -109,6 +129,7 @@ function displayingOne(user) {
   passingData(dispFriends, user);
   passingData(disFrOfFr, user);
 }
+
 
 function dispFriends(users, user) {
   var usWrap = document.getElementsByClassName("userBigDiv");
@@ -169,7 +190,7 @@ retDiv.appendChild(smallWrap)
 function disFrOfFr(users, user) {
   var usWrap = document.getElementsByClassName("userBigDiv");
   var retDiv = document.createElement("div");
-  retDiv.setAttribute("class", "frOfFrDiv");
+  retDiv.setAttribute("class", "friendsOfFriend");
 
   var headerDiv=document.createElement("div");
   headerDiv.setAttribute("class", "friendsHeader");
@@ -299,4 +320,23 @@ function disFrOfFr(users, user) {
   }
   usWrap[0].appendChild(retDiv);
   usWrap[0].appendChild(sugDiv);
+}
+
+
+function addingPic(user, picClass){
+var userPic = document.createElement("img");
+  if (user.gender == "male") {
+    userPic.setAttribute("src", "malePic.jpeg");
+    userPic.setAttribute("alt","male picture");
+  } else {
+    userPic.setAttribute("src", "femalePic.jpg");
+    userPic.setAttribute("alt","female picture");
+  }
+  userPic.setAttribute("class",picClass);
+  return userPic;
+}
+function addingName(user){
+  var fullName = document.createElement("div");
+  fullName.innerHTML = user.firstName + " " + user.surname;
+  return fullName;
 }
