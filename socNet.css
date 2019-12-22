@@ -1,11 +1,14 @@
+*{
+    font-family: 'Roboto', sans-serif;
+    
+}
 #wraper{
     display: block;
-    width: 100%;
-    min-height: 90%;
-    border: solid red 3px;
+    width: 100vw;
+    min-height: 90vh;
 }
 #page{
-    width: 100%;
+    width: 100vw;
 }
 .userDiv{
     background-color: aquamarine;
@@ -14,29 +17,56 @@
     border-bottom: solid green 2px;
 }
 .userBigDiv{
-    background-color: rgb(212, 248, 7);
     height: 500px;
     width: 100%;
 }
+.frOfFrDiv,.friendsDiv,.sugestedFriends{
+    width: 90vw;
+    margin: 3vw 2vw 2vw;
+    display: blok;
+    border-top: solid rgb(129, 129, 129) 2px;
+}
 .smallProfilDiv{
-    
-    height: 120px;
-    width: 10%;
-    border: solid green 1px;
+    width: 12vw;
+    height: 15vw;
+    text-align: center;
 }
-.friendsDiv{
-    background-color: rgb(248, 59, 217);
+.friendsHeader{
     width: 100%;
+    margin-top: 4vw;
+    margin-bottom: 1vw;
+    font-weight: 800;
+    font-size: 1.2em;
+}
+.smallWrap{
     display: flex;
 }
-.frOfFrDiv{
-    background-color: rgb(20, 246, 12);
-    width: 100%;
-    display: flex;
+
+.profilPic{
+    width: 30vw;
+    height: 30vw;
+    border-radius: 50%;
+    margin: 10vw 35vw 5vw;
 }
-.sugestedFriends{
-    background-color: rgb(31, 7, 246);
-    width: 100%;
-    height: 100px;
-    display: flex;
+#userData{
+    width: 50vw;
+    margin: 5vw 25vw 5vw;
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: rgb(25, 82, 23);
+}
+#userData>div{
+margin-bottom: 0.2em;
+}
+#fullName{
+    font-size: 1.6em;
+    font-weight: 800;
+}
+.smallProfilPic{
+    width: 6vw;
+    height: 6vw;
+    border-radius: 50%;
+    align-self: center;
+    margin: 1vw 3vw 2vw;
 }
