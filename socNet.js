@@ -21,100 +21,68 @@ function passingData(myFunctionName, secondParam) {
 function firstPage(users) {
   var wrap = document.getElementById("wraper");
   var page = document.createElement("div");
-  var firstHeader=document.createElement("div");
-  firstHeader.setAttribute("id","firstHeader");
-  firstHeader.innerHTML="Chose one user";
-  page.appendChild(firstHeader);
   page.setAttribute("id", "page");
+  var firstHeader = document.createElement("div");
+  firstHeader.setAttribute("id", "firstHeader");
+  firstHeader.innerHTML = "Chose one user";
+  page.appendChild(firstHeader);
   wrap.appendChild(page);
   users.forEach(displayingUsers);
 }
+
 function displayingUsers(user) {
   var page = document.getElementById("page");
   var usWrap = document.createElement("div");
   usWrap.setAttribute("class", "userDiv");
   page.appendChild(usWrap);
-
-var userPic=addingPic(user, "smallProfilPic");
-
-  /*var userPic = document.createElement("img");
-  if (user.gender == "male") {
-    userPic.setAttribute("src", "malePic.jpeg");
-    userPic.setAttribute("alt","male picture");
-  } else {
-    userPic.setAttribute("src", "femalePic.jpg");
-    userPic.setAttribute("alt","female picture");
-  }
-  userPic.setAttribute("class","smallProfilPic");*/
+  var userPic = addingPic(user, "smallProfilPic");
   usWrap.appendChild(userPic);
-
-var fullName= addingName(user);
-/*
-  var fullName = document.createElement("div");
-  fullName.innerHTML = user.firstName + " " + user.surname;*/
+  var fullName = addingName(user, "smallFont"); //1.2
   usWrap.appendChild(fullName);
-  /*
-  var usAge = document.createElement("div");
-  if (user.age != null) {
-    usAge.innerHTML = "Age: " + user.age;
-  } else {
-    usAge.innerHTML = "Age: " + "unknown";
-  }
-  usWrap.appendChild(usAge);
-  var usGen = document.createElement("div");
-  usGen.innerHTML = "Gender: " + user.gender;
-  usWrap.appendChild(usGen);
-  var usNumOFr = document.createElement("div");
-  usNumOFr.innerHTML = "Number of friends: " + user.friends.length;
-  usWrap.appendChild(usNumOFr);*/
+
   usWrap.addEventListener("click", function() {
     displayingOne(user);
   });
 }
+
+/*function addHamMenu(){
+  var hamMenu=document.createElement("img");
+  hamMenu.setAttribute("src","menu.png");
+  hamMenu.setAttribute("id","hamMenu");
+  hamMenu.addEventListener("click",function() {
+    location.reload();
+  });
+
+}*/
 function displayingOne(user) {
   var page = document.getElementById("page");
   page.innerHTML = null;
-var hamMenu=document.createElement("img");
-hamMenu.setAttribute("src","menu.png");
-hamMenu.setAttribute("id","hamMenu");
-hamMenu.addEventListener("click",function() {
-  location.reload();
-});
-page.appendChild(hamMenu);
+  /*var hamMenu=addHamMenu();*/
+
+  var hamMenu = document.createElement("img");
+  hamMenu.setAttribute("src", "menu.png");
+  hamMenu.setAttribute("id", "hamMenu");
+  hamMenu.addEventListener("click", function() {
+    location.reload();
+  });
+  page.appendChild(hamMenu);
   var userProfil = document.createElement("div");
-  userProfil.setAttribute("id","userProfil");
+  userProfil.setAttribute("id", "userProfil");
 
-  var userPic=addingPic(user,"profilPic" );
-
-  /*var userPic = document.createElement("img");
-  if (user.gender == "male") {
-    userPic.setAttribute("src", "malePic.jpeg");
-    userPic.setAttribute("alt","male picture");
-  } else {
-    userPic.setAttribute("src", "femalePic.jpg");
-    userPic.setAttribute("alt","female picture");
-  }
-  userPic.setAttribute("class","profilPic");*/
+  var userPic = addingPic(user, "profilPic");
 
   var usWrap = document.createElement("div");
   usWrap.setAttribute("class", "userBigDiv");
   page.appendChild(userProfil);
-  var userData=document.createElement("div");
-  userData.setAttribute("id","userData");
+  var userData = document.createElement("div");
+  userData.setAttribute("id", "userData");
   usWrap.appendChild(userData);
 
-  var fullName=addingName(user);
-  /*
-  var fullName = document.createElement("div");
-  fullName.innerHTML =  user.firstName + " " + user.surname;*/
-  fullName.setAttribute("id","fullName");
+  var fullName = addingName(user, "bigFont");
+
   userData.appendChild(fullName);
-  var usAge = document.createElement("div");
-  if (user.age != null) {
-    usAge.innerHTML = "Age: " + user.age;
-  } else {
-    usAge.innerHTML = "Age: " + "unknown";
-  }
+  var usAge = addingAge(user);
+
   userData.appendChild(usAge);
   var usGen = document.createElement("div");
   usGen.innerHTML = "Gender: " + user.gender;
@@ -130,20 +98,19 @@ page.appendChild(hamMenu);
   passingData(disFrOfFr, user);
 }
 
-
 function dispFriends(users, user) {
   var usWrap = document.getElementsByClassName("userBigDiv");
   var retDiv = document.createElement("div");
   retDiv.setAttribute("class", "friendsDiv");
 
-  var headerDiv=document.createElement("div");
-headerDiv.setAttribute("class", "friendsHeader");
-headerDiv.innerHTML="Your friends";
-retDiv.appendChild(headerDiv);
+  var headerDiv = document.createElement("div");
+  headerDiv.setAttribute("class", "friendsHeader");
+  headerDiv.innerHTML = "Your friends";
+  retDiv.appendChild(headerDiv);
 
-var smallWrap=document.createElement("div");
-smallWrap.setAttribute("class", "smallWrap");
-retDiv.appendChild(smallWrap)
+  var smallWrap = document.createElement("div");
+  smallWrap.setAttribute("class", "smallWrap");
+  retDiv.appendChild(smallWrap);
 
   for (var i = 0; i < users.length; i++) {
     for (var j = 0; j < user.friends.length; j++) {
@@ -153,30 +120,13 @@ retDiv.appendChild(smallWrap)
 
         friendProfilDiv.setAttribute("id", users[i].id);
 
-        var userPic = document.createElement("img");
-        if (users[i].gender == "male") {
-          userPic.setAttribute("src", "malePic.jpeg");
-          userPic.setAttribute("alt","male picture");
-        } else {
-          userPic.setAttribute("src", "femalePic.jpg");
-          userPic.setAttribute("alt","female picture");
-        }
-        userPic.setAttribute("class","smallProfilPic");
-        friendProfilDiv.appendChild(userPic);
+        var userPic = addingPic(users[i], "smallProfilPic");
 
-        var fullName = document.createElement("div");
-        fullName.innerHTML = users[i].firstName + " " + users[i].surname;
+        friendProfilDiv.appendChild(userPic);
+        var fullName = addingName(users[i], "smallFont");
+
         friendProfilDiv.appendChild(fullName);
-       /* var usAge = document.createElement("div");
-        if (users[i].age != null) {
-          usAge.innerHTML = "Age: " + users[i].age;
-        } else {
-          usAge.innerHTML = "Age: " + "unknown";
-        }
-        friendProfilDiv.appendChild(usAge);
-        var usGen = document.createElement("div");
-        usGen.innerHTML = "Gender: " + users[i].gender;
-        friendProfilDiv.appendChild(usGen);*/
+
         friendProfilDiv.addEventListener("click", function() {
           displayingOne(users[Number(this.id) - 1]);
         });
@@ -192,27 +142,26 @@ function disFrOfFr(users, user) {
   var retDiv = document.createElement("div");
   retDiv.setAttribute("class", "friendsOfFriend");
 
-  var headerDiv=document.createElement("div");
+  var headerDiv = document.createElement("div");
   headerDiv.setAttribute("class", "friendsHeader");
-  headerDiv.innerHTML="People you might know";
+  headerDiv.innerHTML = "People you might know";
   retDiv.appendChild(headerDiv);
-  
-  var smallWrap=document.createElement("div");
+
+  var smallWrap = document.createElement("div");
   smallWrap.setAttribute("class", "smallWrap");
-  retDiv.appendChild(smallWrap)
-  
+  retDiv.appendChild(smallWrap);
 
   var sugDiv = document.createElement("div");
   sugDiv.setAttribute("class", "sugestedFriends");
 
-  var headerDiv2=document.createElement("div");
+  var headerDiv2 = document.createElement("div");
   headerDiv2.setAttribute("class", "friendsHeader");
-  headerDiv2.innerHTML="Sugested contacts";
+  headerDiv2.innerHTML = "Sugested contacts";
   sugDiv.appendChild(headerDiv2);
-  
-  var smallWrap2=document.createElement("div");
+
+  var smallWrap2 = document.createElement("div");
   smallWrap2.setAttribute("class", "smallWrap");
-  sugDiv.appendChild(smallWrap2)
+  sugDiv.appendChild(smallWrap2);
 
   var tempArray = [];
   var tempArray2 = [];
@@ -234,36 +183,13 @@ function disFrOfFr(users, user) {
                 friendProfilDiv.setAttribute("class", "smallProfilDiv");
                 friendProfilDiv.setAttribute("id", users[ixj].id);
 
-                var userPic = document.createElement("img");
-                if (users[ixj].gender == "male") {
-                  userPic.setAttribute("src", "malePic.jpeg");
-                  userPic.setAttribute("alt","male picture");
-                } else {
-                  userPic.setAttribute("src", "femalePic.jpg");
-                  userPic.setAttribute("alt","female picture");
-                }
-                userPic.setAttribute("class","smallProfilPic");
+                var userPic = addingPic(users[ixj], "smallProfilPic");
+
                 friendProfilDiv.appendChild(userPic);
 
+                var fullName = addingName(users[ixj], "smallFont");
 
-                var fullName = document.createElement("div");
-                fullName.innerHTML = users[ixj].firstName +
-                  " " +
-                  users[ixj].surname;
                 friendProfilDiv.appendChild(fullName);
-
-
-               /* var usAge = document.createElement("div");
-                if (users[ixj].age != null) {
-                  usAge.innerHTML = "Age: " + users[ixj].age;
-                } else {
-                  usAge.innerHTML = "Age: " + "unknown";
-                }
-                friendProfilDiv.appendChild(usAge);
-                var usGen = document.createElement("div");
-                usGen.innerHTML = "Gender: " + users[ixj].gender;
-                friendProfilDiv.appendChild(usGen);*/
-
 
                 friendProfilDiv.addEventListener("click", function() {
                   displayingOne(users[Number(this.id) - 1]);
@@ -275,36 +201,12 @@ function disFrOfFr(users, user) {
                 friendProfilDiv.setAttribute("class", "smallProfilDiv");
                 friendProfilDiv.setAttribute("id", users[ixj].id);
 
+                var userPic = addingPic(users[ixj], "smallProfilPic");
 
-                var userPic = document.createElement("img");
-                if (users[ixj].gender == "male") {
-                  userPic.setAttribute("src", "malePic.jpeg");
-                  userPic.setAttribute("alt","male picture");
-                } else {
-                  userPic.setAttribute("src", "femalePic.jpg");
-                  userPic.setAttribute("alt","female picture");
-                }
-                userPic.setAttribute("class","smallProfilPic");
                 friendProfilDiv.appendChild(userPic);
+                var fullName = addingName(users[ixj], "smallFont");
 
-                var fullName = document.createElement("div");
-                fullName.innerHTML =  users[ixj].firstName +
-                  " " +
-                  users[ixj].surname;
                 friendProfilDiv.appendChild(fullName);
-
-        
-               /* var usAge = document.createElement("div");
-                if (users[ixj].age != null) {
-                  usAge.innerHTML = "Age: " + users[ixj].age;
-                } else {
-                  usAge.innerHTML = "Age: " + "unknown";
-                }
-                friendProfilDiv.appendChild(usAge);
-                var usGen = document.createElement("div");
-                usGen.innerHTML = "Gender: " + users[ixj].gender;
-                friendProfilDiv.appendChild(usGen);*/
-
 
                 friendProfilDiv.addEventListener("click", function() {
                   displayingOne(users[Number(this.id) - 1]);
@@ -322,21 +224,31 @@ function disFrOfFr(users, user) {
   usWrap[0].appendChild(sugDiv);
 }
 
-
-function addingPic(user, picClass){
-var userPic = document.createElement("img");
+function addingPic(user, picClass) {
+  var userPic = document.createElement("img");
   if (user.gender == "male") {
     userPic.setAttribute("src", "malePic.jpeg");
-    userPic.setAttribute("alt","male picture");
+    userPic.setAttribute("alt", "male picture");
   } else {
     userPic.setAttribute("src", "femalePic.jpg");
-    userPic.setAttribute("alt","female picture");
+    userPic.setAttribute("alt", "female picture");
   }
-  userPic.setAttribute("class",picClass);
+  userPic.setAttribute("class", picClass);
   return userPic;
 }
-function addingName(user){
+function addingName(user, fontClass) {
   var fullName = document.createElement("div");
   fullName.innerHTML = user.firstName + " " + user.surname;
+  fullName.setAttribute("id", "fullName");
+  fullName.setAttribute("class", fontClass);
   return fullName;
+}
+function addingAge(user) {
+  var usAge = document.createElement("div");
+  if (user.age != null) {
+    usAge.innerHTML = "Age: " + user.age;
+  } else {
+    usAge.innerHTML = "Age: " + "unknown";
+  }
+  return usAge;
 }
