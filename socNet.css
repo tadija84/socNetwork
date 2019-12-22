@@ -1,6 +1,5 @@
 *{
-    font-family: 'Roboto', sans-serif;
-    
+    font-family: 'Roboto', sans-serif;  
 }
 #wraper{
     display: block;
@@ -9,12 +8,14 @@
 }
 #page{
     width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
 }
 .userDiv{
-    background-color: aquamarine;
-    height: 100px;
-    width: 100%;
-    border-bottom: solid green 2px;
+    width: 18vw;
+    height: 20vw;
+    text-align: center;
+    border-bottom: solid rgb(129, 129, 129) 2px;
 }
 .userBigDiv{
     height: 500px;

@@ -30,9 +30,22 @@ function displayingUsers(user) {
   var usWrap = document.createElement("div");
   usWrap.setAttribute("class", "userDiv");
   page.appendChild(usWrap);
+
+  var userPic = document.createElement("img");
+  if (user.gender == "male") {
+    userPic.setAttribute("src", "malePic.jpeg");
+    userPic.setAttribute("alt","male picture");
+  } else {
+    userPic.setAttribute("src", "femalePic.jpg");
+    userPic.setAttribute("alt","female picture");
+  }
+  userPic.setAttribute("class","smallProfilPic");
+  usWrap.appendChild(userPic);
+
   var fullName = document.createElement("div");
-  fullName.innerHTML = "User name: " + user.firstName + " " + user.surname;
+  fullName.innerHTML = user.firstName + " " + user.surname;
   usWrap.appendChild(fullName);
+  /*
   var usAge = document.createElement("div");
   if (user.age != null) {
     usAge.innerHTML = "Age: " + user.age;
@@ -45,7 +58,7 @@ function displayingUsers(user) {
   usWrap.appendChild(usGen);
   var usNumOFr = document.createElement("div");
   usNumOFr.innerHTML = "Number of friends: " + user.friends.length;
-  usWrap.appendChild(usNumOFr);
+  usWrap.appendChild(usNumOFr);*/
   usWrap.addEventListener("click", function() {
     displayingOne(user);
   });
