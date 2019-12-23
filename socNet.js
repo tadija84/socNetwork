@@ -32,61 +32,60 @@ function firstPage(users) {
 
 function displayingUsers(user) {
   var page = document.getElementById("page");
-  var usWrap = document.createElement("div");
-  usWrap.setAttribute("class", "userDiv");
-  page.appendChild(usWrap);
+  var userWrap = document.createElement("div");
+  userWrap.setAttribute("class", "userDiv");
+  page.appendChild(userWrap);
   var userPic = addingPic(user, "smallProfilPic");
-  usWrap.appendChild(userPic);
+  userWrap.appendChild(userPic);
   var fullName = addingName(user, "smallFont"); //1.2
-  usWrap.appendChild(fullName);
-
-  usWrap.addEventListener("click", function() {
+  userWrap.appendChild(fullName);
+  userWrap.addEventListener("click", function() {
     displayingOne(user);
   });
 }
 
-function addHamMenu() {
-  var hamMenu = document.createElement("img");
-  hamMenu.setAttribute("src", "menu.png");
-  hamMenu.setAttribute("id", "hamMenu");
-  hamMenu.addEventListener("click", function() {
+function addBurgMenu() {
+  var burgMenu = document.createElement("img");
+  burgMenu.setAttribute("src", "menu.png");
+  burgMenu.setAttribute("id", "burgMenu");
+  burgMenu.addEventListener("click", function() {
     location.reload();
   });
-  return hamMenu;
+  return burgMenu;
 }
 
 function displayingOne(user) {
   var page = document.getElementById("page");
   page.innerHTML = null;
-  var hamMenu = addHamMenu();
+  var burgMenu = addBurgMenu();
   var userProfil = document.createElement("div");
   userProfil.setAttribute("id", "userProfil");
   var userPic = addingPic(user, "profilPic");
-  var usWrap = document.createElement("div");
-  usWrap.setAttribute("class", "userBigDiv");
+  var userWrap = document.createElement("div");
+  userWrap.setAttribute("class", "userBigDiv");
   var userData = document.createElement("div");
   userData.setAttribute("id", "userData");
   var fullName = addingName(user, "bigFont");
-  var usAge = addingAge(user);
-  var usGen = document.createElement("div");
-  usGen.innerHTML = "Gender: " + user.gender;
+  var userAge = addingAge(user);
+  var userGen = document.createElement("div");
+  userGen.innerHTML = "Gender: " + user.gender;
   var usNumOFr = document.createElement("div");
   usNumOFr.innerHTML = "Number of friends: " + user.friends.length;
-  page.appendChild(hamMenu);
+  page.appendChild(burgMenu);
   page.appendChild(userProfil);
   userData.appendChild(fullName);
-  userData.appendChild(usAge);
-  userData.appendChild(usGen);
+  userData.appendChild(userAge);
+  userData.appendChild(userGen);
   userData.appendChild(usNumOFr);
-  usWrap.appendChild(userData);
+  userWrap.appendChild(userData);
   userProfil.appendChild(userPic);
-  userProfil.appendChild(usWrap);
+  userProfil.appendChild(userWrap);
   passingData(dispFriends, user);
   passingData(dispFriendsOfFriends, user);
 }
 
 function dispFriends(users, user) {
-  var usWrap = document.getElementsByClassName("userBigDiv");
+  var userWrap = document.getElementsByClassName("userBigDiv");
   var retDiv = addingRetDiv("Your friends");
   var smallWrap = document.createElement("div");
   smallWrap.setAttribute("class", "smallWrap");
@@ -99,17 +98,15 @@ function dispFriends(users, user) {
     }
   }
   retDiv.appendChild(smallWrap);
-  usWrap[0].appendChild(retDiv);
+  userWrap[0].appendChild(retDiv);
 }
 
 function dispFriendsOfFriends(users, user) {
-  var usWrap = document.getElementsByClassName("userBigDiv");
+  var userWrap = document.getElementsByClassName("userBigDiv");
   var retDiv = addingRetDiv("Friends of friends");
-  var sugDiv = addingRetDiv("Sugested friends");
-
+  var sugestionsDiv = addingRetDiv("Sugested friends");
   var smallWrap = document.createElement("div");
   smallWrap.setAttribute("class", "smallWrap");
-
   var smallWrap2 = document.createElement("div");
   smallWrap2.setAttribute("class", "smallWrap");
   var tempArray = [];
@@ -142,10 +139,10 @@ function dispFriendsOfFriends(users, user) {
       }
     }
   }
-  sugDiv.appendChild(smallWrap2);
+  sugestionsDiv.appendChild(smallWrap2);
   retDiv.appendChild(smallWrap);
-  usWrap[0].appendChild(retDiv);
-  usWrap[0].appendChild(sugDiv);
+  userWrap[0].appendChild(retDiv);
+  userWrap[0].appendChild(sugestionsDiv);
 }
 
 function addingPic(user, picClass) {
@@ -160,6 +157,7 @@ function addingPic(user, picClass) {
   userPic.setAttribute("class", picClass);
   return userPic;
 }
+
 function addingName(user, fontClass) {
   var fullName = document.createElement("div");
   fullName.innerHTML = user.firstName + " " + user.surname;
@@ -167,14 +165,15 @@ function addingName(user, fontClass) {
   fullName.setAttribute("class", fontClass);
   return fullName;
 }
+
 function addingAge(user) {
-  var usAge = document.createElement("div");
+  var userAge = document.createElement("div");
   if (user.age != null) {
-    usAge.innerHTML = "Age: " + user.age;
+    userAge.innerHTML = "Age: " + user.age;
   } else {
-    usAge.innerHTML = "Age: " + "unknown";
+    userAge.innerHTML = "Age: " + "unknown";
   }
-  return usAge;
+  return userAge;
 }
 
 function addingRetDiv(divText) {

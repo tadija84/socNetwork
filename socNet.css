@@ -27,7 +27,7 @@
 .userBigDiv{
     width: 100%;
 }
-#hamMenu{
+#burgMenu{
     z-index: 5;
     width: 6vw;
     position: fixed;
