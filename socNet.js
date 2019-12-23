@@ -139,6 +139,9 @@ function dispFriendsOfFriends(users, user) {
       }
     }
   }
+  if(tempArray2.length == 0){
+    sugestionsDiv = addingRetDiv("No sugested friends");
+  }
   sugestionsDiv.appendChild(smallWrap2);
   retDiv.appendChild(smallWrap);
   userWrap[0].appendChild(retDiv);
