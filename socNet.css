@@ -50,7 +50,7 @@
     margin-top: 4vw;
     margin-bottom: 1vw;
     font-weight: 800;
-    font-size: 1.2em;
+    font-size: 1.4em;
 }
 .smallWrap{
     display: flex;
@@ -78,6 +78,7 @@ margin-bottom: 0.2em;
 }
 .smallFont{
     font-size: 1em;
+    font-weight: 600;
 }
 .smallProfilPic{
     width: 6vw;

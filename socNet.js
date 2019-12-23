@@ -45,124 +45,73 @@ function displayingUsers(user) {
   });
 }
 
-/*function addHamMenu(){
-  var hamMenu=document.createElement("img");
-  hamMenu.setAttribute("src","menu.png");
-  hamMenu.setAttribute("id","hamMenu");
-  hamMenu.addEventListener("click",function() {
-    location.reload();
-  });
-
-}*/
-function displayingOne(user) {
-  var page = document.getElementById("page");
-  page.innerHTML = null;
-  /*var hamMenu=addHamMenu();*/
-
+function addHamMenu() {
   var hamMenu = document.createElement("img");
   hamMenu.setAttribute("src", "menu.png");
   hamMenu.setAttribute("id", "hamMenu");
   hamMenu.addEventListener("click", function() {
     location.reload();
   });
-  page.appendChild(hamMenu);
+  return hamMenu;
+}
+
+function displayingOne(user) {
+  var page = document.getElementById("page");
+  page.innerHTML = null;
+  var hamMenu = addHamMenu();
   var userProfil = document.createElement("div");
   userProfil.setAttribute("id", "userProfil");
-
   var userPic = addingPic(user, "profilPic");
-
   var usWrap = document.createElement("div");
   usWrap.setAttribute("class", "userBigDiv");
-  page.appendChild(userProfil);
   var userData = document.createElement("div");
   userData.setAttribute("id", "userData");
-  usWrap.appendChild(userData);
-
   var fullName = addingName(user, "bigFont");
-
-  userData.appendChild(fullName);
   var usAge = addingAge(user);
-
-  userData.appendChild(usAge);
   var usGen = document.createElement("div");
   usGen.innerHTML = "Gender: " + user.gender;
-  userData.appendChild(usGen);
   var usNumOFr = document.createElement("div");
   usNumOFr.innerHTML = "Number of friends: " + user.friends.length;
+  page.appendChild(hamMenu);
+  page.appendChild(userProfil);
+  userData.appendChild(fullName);
+  userData.appendChild(usAge);
+  userData.appendChild(usGen);
   userData.appendChild(usNumOFr);
-
+  usWrap.appendChild(userData);
   userProfil.appendChild(userPic);
   userProfil.appendChild(usWrap);
-
   passingData(dispFriends, user);
-  passingData(disFrOfFr, user);
+  passingData(dispFriendsOfFriends, user);
 }
 
 function dispFriends(users, user) {
   var usWrap = document.getElementsByClassName("userBigDiv");
-  var retDiv = document.createElement("div");
-  retDiv.setAttribute("class", "friendsDiv");
-
-  var headerDiv = document.createElement("div");
-  headerDiv.setAttribute("class", "friendsHeader");
-  headerDiv.innerHTML = "Your friends";
-  retDiv.appendChild(headerDiv);
-
+  var retDiv = addingRetDiv("Your friends");
   var smallWrap = document.createElement("div");
   smallWrap.setAttribute("class", "smallWrap");
-  retDiv.appendChild(smallWrap);
-
   for (var i = 0; i < users.length; i++) {
     for (var j = 0; j < user.friends.length; j++) {
       if (user.friends[j] == users[i].id) {
-        var friendProfilDiv = document.createElement("div");
-        friendProfilDiv.setAttribute("class", "smallProfilDiv");
-
-        friendProfilDiv.setAttribute("id", users[i].id);
-
-        var userPic = addingPic(users[i], "smallProfilPic");
-
-        friendProfilDiv.appendChild(userPic);
-        var fullName = addingName(users[i], "smallFont");
-
-        friendProfilDiv.appendChild(fullName);
-
-        friendProfilDiv.addEventListener("click", function() {
-          displayingOne(users[Number(this.id) - 1]);
-        });
+        var friendProfilDiv = addingFriendsProfile(users, i);
         smallWrap.appendChild(friendProfilDiv);
       }
     }
   }
+  retDiv.appendChild(smallWrap);
   usWrap[0].appendChild(retDiv);
 }
 
-function disFrOfFr(users, user) {
+function dispFriendsOfFriends(users, user) {
   var usWrap = document.getElementsByClassName("userBigDiv");
-  var retDiv = document.createElement("div");
-  retDiv.setAttribute("class", "friendsOfFriend");
-
-  var headerDiv = document.createElement("div");
-  headerDiv.setAttribute("class", "friendsHeader");
-  headerDiv.innerHTML = "People you might know";
-  retDiv.appendChild(headerDiv);
+  var retDiv = addingRetDiv("Friends of friends");
+  var sugDiv = addingRetDiv("Sugested friends");
 
   var smallWrap = document.createElement("div");
   smallWrap.setAttribute("class", "smallWrap");
-  retDiv.appendChild(smallWrap);
-
-  var sugDiv = document.createElement("div");
-  sugDiv.setAttribute("class", "sugestedFriends");
-
-  var headerDiv2 = document.createElement("div");
-  headerDiv2.setAttribute("class", "friendsHeader");
-  headerDiv2.innerHTML = "Sugested contacts";
-  sugDiv.appendChild(headerDiv2);
 
   var smallWrap2 = document.createElement("div");
   smallWrap2.setAttribute("class", "smallWrap");
-  sugDiv.appendChild(smallWrap2);
-
   var tempArray = [];
   var tempArray2 = [];
   for (var i = 0; i < users.length; i++) {
@@ -179,38 +128,11 @@ function disFrOfFr(users, user) {
               checkArr2 == false
             ) {
               if (checkArr == false) {
-                var friendProfilDiv = document.createElement("div");
-                friendProfilDiv.setAttribute("class", "smallProfilDiv");
-                friendProfilDiv.setAttribute("id", users[ixj].id);
-
-                var userPic = addingPic(users[ixj], "smallProfilPic");
-
-                friendProfilDiv.appendChild(userPic);
-
-                var fullName = addingName(users[ixj], "smallFont");
-
-                friendProfilDiv.appendChild(fullName);
-
-                friendProfilDiv.addEventListener("click", function() {
-                  displayingOne(users[Number(this.id) - 1]);
-                });
+                var friendProfilDiv = addingFriendsProfile(users, ixj);
                 smallWrap.appendChild(friendProfilDiv);
                 tempArray.push(users[ixj].id);
               } else if (checkArr3 == false) {
-                var friendProfilDiv = document.createElement("div");
-                friendProfilDiv.setAttribute("class", "smallProfilDiv");
-                friendProfilDiv.setAttribute("id", users[ixj].id);
-
-                var userPic = addingPic(users[ixj], "smallProfilPic");
-
-                friendProfilDiv.appendChild(userPic);
-                var fullName = addingName(users[ixj], "smallFont");
-
-                friendProfilDiv.appendChild(fullName);
-
-                friendProfilDiv.addEventListener("click", function() {
-                  displayingOne(users[Number(this.id) - 1]);
-                });
+                var friendProfilDiv = addingFriendsProfile(users, ixj);
                 smallWrap2.appendChild(friendProfilDiv);
                 tempArray2.push(users[ixj].id);
               }
@@ -220,6 +142,8 @@ function disFrOfFr(users, user) {
       }
     }
   }
+  sugDiv.appendChild(smallWrap2);
+  retDiv.appendChild(smallWrap);
   usWrap[0].appendChild(retDiv);
   usWrap[0].appendChild(sugDiv);
 }
@@ -252,3 +176,28 @@ function addingAge(user) {
   }
   return usAge;
 }
+
+function addingRetDiv(divText) {
+  var retDiv = document.createElement("div");
+  retDiv.setAttribute("class", "friendsDiv");
+  var headerDiv = document.createElement("div");
+  headerDiv.setAttribute("class", "friendsHeader");
+  headerDiv.innerHTML = divText;
+  retDiv.appendChild(headerDiv);
+  return retDiv;
+}
+
+function addingFriendsProfile(users, x) {
+  var friendProfilDiv = document.createElement("div");
+  friendProfilDiv.setAttribute("class", "smallProfilDiv");
+  friendProfilDiv.setAttribute("id", users[x].id);
+  var userPic = addingPic(users[x], "smallProfilPic");
+  friendProfilDiv.appendChild(userPic);
+  var fullName = addingName(users[x], "smallFont");
+  friendProfilDiv.appendChild(fullName);
+  friendProfilDiv.addEventListener("click", function() {
+    displayingOne(users[Number(users[x].id) - 1]);
+  });
+  return friendProfilDiv;
+}
+
