@@ -56,7 +56,7 @@ function addBurgMenu() {
 
 function displayingOne(user) {
   var page = document.getElementById("page");
-  page.innerHTML = null;
+  page.innerHTML = "";
   var burgMenu = addBurgMenu();
   var userProfil = document.createElement("div");
   userProfil.setAttribute("id", "userProfil");

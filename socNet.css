@@ -18,7 +18,7 @@
     font-weight: 800;
 }
 .userDiv{
-    width: 18vw;
+    width: 30vw;
     height: 20vw;
     text-align: center;
     margin: 4vw 1vw 1vw;
@@ -41,8 +41,8 @@
     border-top: solid rgb(129, 129, 129) 2px;
 }
 .smallProfilDiv{
-    width: 12vw;
-    height: 15vw;
+    width: 20vw;
+    height: 20vw;
     text-align: center;
 }
 .friendsHeader{
@@ -86,4 +86,15 @@ margin-bottom: 0.2em;
     border-radius: 50%;
     align-self: center;
     margin: 1vw 3vw 2vw;
+}
+
+@media screen and (min-width: 600px) {
+    .userDiv{
+    width: 18vw;
+    height: 20vw;
+    }
+    .smallProfilDiv{
+    width: 12vw;
+    height: 15vw;
+    }
 }
